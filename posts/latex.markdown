@@ -8,11 +8,10 @@ The main reason for using LaTeX is that it allows you to work on the content of 
 
 ### Templates and Plugins
 
-LaTeX is free and available for most operating systems. There is also a large LaTeX community which develops themes and modules that can be added to LaTeX documents. Many journals also provide LaTeX templates in which papers can be submitted. There are also great templates available for writing a [thesis][the] or [dissertation][dis]. There may also be specific templates which follow your own institution guidelines. There are many useful third party plugins for adding extras to a document. For example there are plugins for [beautiful formating of tables][table], [grouping figures into related subfigures][subfig], [replacing text inside figures][replace] and even [a framework for including R-code inside a LaTeX document][sweave].
+LaTeX is free and available for most operating systems. There is also a large LaTeX community which develops themes and modules that can be added to LaTeX documents. Many journals also provide LaTeX templates in which papers can be submitted. There are also great templates available for writing a [thesis or dissertation][thesis]. There may also be specific templates which follow your own institution guidelines. There are many useful third party plugins for adding extras to a document. For example there are plugins for [beautiful formating of tables][table], [grouping figures into related subfigures][subfig], [replacing text inside figures][replace] and even [a framework for including R-code inside a LaTeX document][sweave].
 
-[the]: INSERT LINK TO THESIS TEMPLATES
-[dis]: INSERT LINK TO DISSERTATION TEMPLATES
-[table]: INSERT LINK TO TABLE PLUGIN
-[subfig]: INSERT LINK TO SUBFIGURE PLUGIN
-[replace]: INSERT LINK TO TEXT REPLACE PLUGIN
-[sweave]: INSERT LINK TO SWEAVE
+[thesis]: http://bit.ly/lBZs
+[table]: http://www.ctan.org/tex-archive/macros/latex/contrib/booktabs/
+[subfig]: http://www.ctan.org/tex-archive/macros/latex/contrib/subfig/
+[replace]: http://www.ctan.org/tex-archive/macros/latex/contrib/subfig/
+[sweave]: http://www.stat.uni-muenchen.de/~leisch/Sweave/
