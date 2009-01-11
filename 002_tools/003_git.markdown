@@ -10,7 +10,7 @@ As a VCS git is clean and minimal, working out of a single .git directory in the
 
 Git is useful for collaborating on shared source code repositories. The collaborative development of the Linux kernel is the reason git was [created by Linus Torvalds][history]. A key feature of git is that it is distributed. You are not bound by working from a single source server. I have my copy of the repository and you have yours. I like the changes you are making so I clone your repository as a branch into my own. I can test out the changes you've made before merging them into my master branch. If I only want a subset of the changes you've made I can use the git cherry-pick command to merge only the changes I want. The website [github.com][gh] enables a collaborative aspect of developing software with git. Github acts as a git server but also highlights the social links of branches between developers. Other developers' git repositories can be viewed and downloaded, but also forked into your own github space. This fork acts as a copy of the original repository with the relationship between the two repositories maintained. Github monitors the commits, merges and branching between repositories which can be viewed, compared, or visualised as a network.
 
-### Five
+### Getting started
 
 - [The git website][git]
 - [Video introduction to git][video]
