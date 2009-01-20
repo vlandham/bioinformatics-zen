@@ -1,39 +1,51 @@
-Writing good code makes life easier. If there's a common theme in bioinformatics, it is this: you will write a script, move on to something else, then return to the script in a few months or years time and try to remember how it works. The clearer the code is written, the better to understand how it works. Writing code is personal, and discussing what makes good code is controversial. Here I'm illustrating what I think are some basic principles that apply to most languages.
+Writing good code makes life easier. If there's a common theme in bioinformatics, it is this: you will write a script, move on to something else, then return to the script in a few months or years time and try to remember how it works. The clearer the code is originally written, the better to remember how it works. Here is a quote ["All programming is maintenance programming, because you are rarely writing original code"][maintain]. This means that most of your time will be spent fixing and improving code, rather than writing fresh. Writing code is personal, and discussing what makes good code is controversial. But I'm going do it anyway and describes what I think are a few basic principles that can help to make code easier to maintain.
 
-### Be verbose
+### Be too descriptive
 
-I think code should err on the side of being to verbose, rather than being to concise. I mean that code should be loud and descriptive about what its purpose is. An example is variable names.
+I think code should err on the side of being too descriptive, rather than being too concise. I mean that code should be loud and expressive about its purpose. An example is choosing variable names.
 
     # Concise
     seq = File.read('gene.fasta')
     
-    # Verbose
+    # Descriptive
     fasta_gene_sequence = File.read('gene.fasta')
 
-The second example is longer, but leaves no doubt as to what the variable contains. The same can be applied to method names.
+The second example is longer, but leaves no doubt as to what the variable contains. The same can be applied to method names. The more specific a method name the better to remember the function and what is returned.
 
     # Concise
     def get_seq(file)
       # ...
     end
 
-    # Verbose
+    # Descriptive
     def read_fasta_from(file)
       # ...
     end
 
-Next are magic numbers, numbers that appear in code, but have no explanation to their meaning.
+Next are magic numbers, numbers that appear in code, but have no explanation to their meaning. These can particularly annoying if you can't remember why you used the number and there is no other reference to it.
 
-    # Three, its the magic numbr
+    # Three, its the magic number
     dna_sequence.scan(3)
 
-    # Verbose
+    # Descriptive
     nucleotides_per_codon = 3
     dna_sequence.scan(nucleotides_per_codon)
 
-Comments never hurt either, as long as they are correct. Comments are more useful when the meaning of the code is not obvious.
+Comments never hurt either, as long as they are correct. Incorrect comments are generally not considered useful. Comments are especially useful when the meaning of the code is not obvious, but going too much commenting can sometimes make code less easy to read
 
     # Why the chop?
+    protein = dna_sequence.translate.chop
+
+    # Some of wikipedia in here...
+    # In the genetic code, a stop codon (or termination 
+    # codon) is a nucleotide triplet within messenger RNA
+    # that signals a termination of translation. Proteins 
+    # are unique sequences of amino acids, and most 
+    # codons in messenger RNA correspond to the addition
+    # of an amino acid to a growing protein chain, stop
+    # codons signal the termination of this process,
+    # releasing the amino acid chain.
+    # Here I am removing the stop codon after translation
     protein = dna_sequence.translate.chop
 
     # Remove the stop codon after translating
@@ -43,16 +55,25 @@ Try to follow the indentation guidelines for the language you're writing in. Ind
 
 ### DRY
 
-DRY means don't repeat yourself. Code for a single function should exist in a single place. When code needs fixing or maintaining, it only needs to changed once in the one place that it resides. In the short term its tempting to to copy and paste code to save time, but this will be time consuming in the long term when debugging is required.
+DRY means don't repeat yourself. Code for a single function should exist in a single place. When code needs fixing or maintaining, it only needs to changed once in the one place that it resides. In the short term it's tempting to copy and paste to save time, but this will be time consuming in the long term when debugging.
 
-A common function, such as system specific BLAST setting, used across a variety of scripts can be kept in a single file. The setting can be called by any script when required. By moving all the common code to a single file, if the BLAST settings need to be updated, this is done in one place.
+For example a common function such as system specific BLAST settings, used across a variety of scripts can be kept in a single file. The can then be called by any script when required. By moving all the common code to a single file, if the BLAST settings change, this is done in just one place.
 
 ### Books and frameworks
 
-When I used Java, Joshua Bloch's  Effective Java book helped me learn a great deal about how to programme using Java. When learning Ruby I found the Ruby Way book had many useful examples of how to write in Ruby. I might guess for any popular programming language there is a very respected book that illustrates the best practices in the language. The type of book I'm thinking of is not necessarily useful for beginners, but more for people who are confident writing in the language, and want to learn well. I think a book like this is a good investment for writing better, more maintainable code.
+When I used Java, Joshua Bloch's [Effective Java][effective] book helped me learn a great deal about how to programme well. When learning Ruby I found the [Ruby Way][way] book had many useful examples of how to write in Ruby. I might guess for any popular programming language there is a respected book that illustrates the best practices in the language. These are not the most useful if you're just starting to learn the language, but as you get more confident they are great for helping to write better, more maintainable code.
 
-In addition to good books, examples of the best practices in a language can be found in popular open source libraries. Rails is a ruby framework for creating dynamic website. Knowing Rails will come in handy if I ever need to create an interactive website, but practising with Rails also gives an opinionated view of the best way to organise a ruby project, from people who are experienced in creating them.
+In addition to good books, examples of the best practices in a language can be found in popular open source libraries. [Rails][rails] is a Ruby framework for creating dynamic website. Knowing Rails will come in handy if I ever need to create an interactive website, but practising with Rails also gives an opinionated view of the best way to organise a Ruby project, from people who are experienced in creating them.
 
-java.sun.com/docs/books/effective/
-rubyhacker.com/
-rubyonrails.org/
+### Further reading
+
+ * [How to write maintainable code](http://seanskti.wordpress.com/2006/10/08/six-easy-tips-for-more-maintainable-code/)
+ * [Twelve steps to better code](http://www.joelonsoftware.com/articles/fog0000000043.html)
+ * [Strategies for commenting code](http://particletree.com/features/successful-strategies-for-commenting-code/)
+ * [Common types of bad design](http://sourcemaking.com/antipatterns/software-development-antipatterns)
+ * [How to write unmaintainable code](http://www.freevbcode.com/ShowCode.Asp?ID=2547)
+
+[maintain]: http://www.artima.com/intv/dry.html
+[effective]: java.sun.com/docs/books/effective/
+[way]: rubyhacker.com/
+[rails]: rubyonrails.org/
