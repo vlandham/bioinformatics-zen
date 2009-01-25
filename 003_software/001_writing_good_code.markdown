@@ -74,6 +74,6 @@ In addition to good books, examples of the best practices in a language can be f
  * [How to write unmaintainable code](http://www.freevbcode.com/ShowCode.Asp?ID=2547)
 
 [maintain]: http://www.artima.com/intv/dry.html
-[effective]: java.sun.com/docs/books/effective/
-[way]: rubyhacker.com/
-[rails]: rubyonrails.org/
+[effective]: http://java.sun.com/docs/books/effective/
+[way]: http://rubyhacker.com/
+[rails]: http://rubyonrails.org/
