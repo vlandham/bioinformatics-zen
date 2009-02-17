@@ -1,8 +1,8 @@
 Scripts differentiate computational research from software production. Scripting is writing a file of code with a specific purpose such as running a BLAST search on the *E. coli* genome. A bioinformatician using scripts as the tools for research is comparable to the laboratory biologist using a pipette. In comparison with software development scripting is an auxiliary to make designing software to sell to a customer. The focus is the finished product and scripts can make source code management or unit testing easier to perform than repetitive manual activation. Is there best practice for organising a set of scripts?
 
-#TODO: Insert something here about directory organisation
+TODO: Insert something here about directory organisation
 
-### Managing dependency
+### Managing dependency
 
 Scripts are often required to run in a specific order. One script produces results which is the input to the next script. One script is dependent on the previous script being run first. Greater dependency in software equates to increased complexity and creates more work to maintain a project. If there is a bug in one script, which creates undetected errors in the data, mistakes are propagated through the remaining workflow. In another example, if one script in a workflow is forgotten, and the results of a previous work iteration are still present, then the results of the previous iteration can enter the script workflow.
 
