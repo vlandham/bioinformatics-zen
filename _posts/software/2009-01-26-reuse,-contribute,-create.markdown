@@ -1,5 +1,6 @@
 ---
   category: software
+  layout: default
 ---
 ### Use existing code
 

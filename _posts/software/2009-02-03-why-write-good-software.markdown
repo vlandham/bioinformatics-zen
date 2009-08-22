@@ -1,5 +1,6 @@
 ---
   category: software
+  layout: default
 ---
 Bioinformatics is far from commercial software development. A bioinformatician's goal is developing novel scientific research or tools. A software developer is judged on delivering software that people will pay to use. A biologist, whether they use Perl, a pipette or both, is evaluated on their publication record.
 

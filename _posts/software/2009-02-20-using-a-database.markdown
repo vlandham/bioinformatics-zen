@@ -1,5 +1,6 @@
 ---
   category: software
+  layout: default
 ---
 My best recommendation for any computational biologist is to learn to use a relational database with a corresponding object relational mapping system (ORM). This sounds complicated, but doesn't have to be. In bioinformatics, data are distributed as files. Supplementary data are available from journal websites, and a file is easy to attached to an email. The use of data files in programming, however, should be limited wherever possible. A bioinformatics project should instead be built using a database.
 
