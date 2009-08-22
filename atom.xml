@@ -1,0 +1,29 @@
+---
+  layout: nil
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Bioinformatics Zen</title>
+  <link href="http://www.bioinformaticszen.com"/>
+  <id>http://www.bioinformaticszen.com</id>
+  <updated>{{ site.time | date_to_xmlschema }}</updated>
+  <author>
+    <name>Michael Barton</name>
+    <email>mail@michaelbarton.me.uk</email>
+    <uri>http://www.michaelbarton.me.uk</uri>
+  </author>
+  <rights>Creative Commons Attribution 3.0 Unported</rights>
+  {% for post in site.posts %}
+  <entry>
+    <id>http://www.bioinformaticszen.com{{ post.url }}</id>
+    <title>{{ post.title }}</title>
+    <link href="http://www.bioinformaticszen.com{{ post.url }}"/>
+    <published>{{ post.date | date_to_xmlschema }}</updated>
+    <updated>{{ post.date | date_to_xmlschema }}</updated>
+    <author>
+      <name>Michael Barton</name>
+    </author>
+    <content type="html">{{ post.content | xml_escape }}</content>
+  </entry>
+  {% endfor %}
+<feed>
