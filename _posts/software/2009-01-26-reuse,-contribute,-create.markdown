@@ -1,3 +1,6 @@
+---
+  category: software
+---
 ### Use existing code
 
 A quick way to get something done is using code that someone else has already written. Many languages have a bioinformatics specific library, such as [BioPerl][perl], [BioJava][java], [BioPython][python], or [BioRuby][ruby]. These libraries have functions for many common tasks, such as reading Fasta files, or parsing BLAST results.
