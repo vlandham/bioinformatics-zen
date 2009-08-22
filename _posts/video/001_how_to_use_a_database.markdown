@@ -1,9 +1,0 @@
-This video illustrates a minimal approach to using a database as the foundation of a bioinformatics project. Only two files are used: a database.rb file, and a Rakefile. Object relational mapping is provided by using the [DataMapper](http://datamapper.rubyforge.org/dm-core/) gem. The [BioRuby](http://www.bioruby.org/) gem is used parse a fasta file of *S. cerevisiae* proteins. Examples of using data validations and experimental logging are also given.
-
-**The text will be more legible in the [high definition version](http://vimeo.com/3387564).**
-
-<object width="601" height="338"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=3387564&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=ff9933&amp;fullscreen=1" /><embed src="http://vimeo.com/moogaloop.swf?clip_id=3387564&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=ff9933&amp;fullscreen=1" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="601" height="338"></embed></object><br /><a href="http://vimeo.com/3387564">Example organisation of a bioinformatics experiment</a> from <a href="http://vimeo.com/user1359407">Michael Barton</a> on <a href="http://vimeo.com">Vimeo</a>.
-
-### Code
-
-<script src="http://gist.github.com/60407.js"></script>
