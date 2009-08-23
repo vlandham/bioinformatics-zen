@@ -1,4 +1,5 @@
 permalink: /:categories/:title
+pygments: true
 source: ./_html
 destination: ./_site
 exclude:
