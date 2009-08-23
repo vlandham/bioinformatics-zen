@@ -14,3 +14,8 @@ desc 'Regenerates html files from jekyll files'
 task :html => :clean do
   `jekyll`
 end
+
+desc "Starts jekyll server on port 4000"
+task :server => [:html,:css] do
+  `jekyll --server`
+end
