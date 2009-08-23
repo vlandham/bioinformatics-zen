@@ -1,6 +1,6 @@
 @import blueprint
 @import blueprint/reset.sass
-@import blueprint/screen.sass
+@import blueprint/modules/colors.sass
 @import blueprint/modules/grid.sass
 
 +blueprint-grid
@@ -9,16 +9,31 @@
 !blueprint_container_size = 950px
 !blueprint_grid_margin  = 10px
 
+!dark_grey  = #484848
+!light_grey = #aaa
+!orange     = #ff7010
+!green      = #10FE70
+
+!font_color         = !dark_grey
+!link_color         = !orange
+!link_hover_color   = !green
+!link_visited_color = !orange
+
 html
+  +blueprint-typography
   :overflow scroll
+  :font-family 'Lucida Grande', Verdana, Arial, Sans-Serif
 
 body
   +container
-  +blueprint-typography
+  :text-align justify
+
+  a
+    :text-decoration none
 
   #banner
     #links
-      +push(!blueprint_grid_columns/2)
+      +push(11)
       +column(!blueprint_grid_columns/2,true)
 
   #text
