@@ -1,5 +1,6 @@
 @import blueprint
 @import blueprint/reset.sass
+@import blueprint/screen.sass
 @import blueprint/modules/grid.sass
 
 +blueprint-grid
@@ -7,6 +8,9 @@
 !blueprint_grid_columns = 24
 !blueprint_container_size = 950px
 !blueprint_grid_margin  = 10px
+
+html
+  :overflow scroll
 
 body
   +container
