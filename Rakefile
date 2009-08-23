@@ -3,6 +3,7 @@ task :default => [:clean, :css, :html]
 desc 'Wipe existing site directory contents'
 task :clean do
   `rm -rf _site/*`
+  `cp -r _images _site`
 end
 
 desc 'Regenerates css files from compass sass'
