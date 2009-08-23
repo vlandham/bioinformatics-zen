@@ -2,6 +2,7 @@
 @import blueprint/reset.sass
 @import blueprint/modules/colors.sass
 @import blueprint/modules/grid.sass
+@import compass/utilities/lists/bullets.sass
 
 +blueprint-grid
 
@@ -9,10 +10,11 @@
 !blueprint_container_size = 950px
 !blueprint_grid_margin  = 10px
 
-!dark_grey  = #484848
-!light_grey = #aaa
-!orange     = #ff7010
-!green      = #10FE70
+!dark_grey   = #484848
+!medium_grey = #aaa
+!light_grey  = #f1f1f3
+!orange      = #ff7010
+!green       = #10FE70
 
 !font_color         = !dark_grey
 !link_color         = !orange
@@ -39,3 +41,51 @@ body
   #text
     +push(3)
     +column(14,true)
+
+    ul.posts
+      +no-bullets
+      span
+        :color = !medium_grey
+        :font-family Monaco, "Courier New", monospace
+
+    pre
+      :background-color = !light_grey
+      .comment
+        :color #005
+        :font-style italic
+      .keyword
+        :color #A00
+        :font-weight bold
+      .method
+        :color #077
+      .class
+        :color #074
+      .module
+        :color #050
+      .punct
+        :color #447
+        :font-weight bold
+      .symbol
+        :color #099
+      .string
+        :color #944
+        :background #FFE
+      .char
+        :color #F07
+      .ident
+        :color #004
+      .constant
+        :color #07F
+      .regex
+        :color #B66
+        :background #FEF
+      .number
+        :color #F99
+      .attribute
+        :color #5bb
+      .global
+        :color #7FB
+      .expr
+        :color #227
+      .escape
+        :color #277
