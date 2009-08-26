@@ -32,6 +32,12 @@
         <h2><a href='/'>Bioinformatics Zen</a></h2>
       </div>
 
+      {% if page.title %}
+      <div id='page-title'>
+	<h3>{{ page.title }}</h3>
+      </div>
+      {% endif %}
+
       <div id='content'>
         {{ content }}
       </div>
