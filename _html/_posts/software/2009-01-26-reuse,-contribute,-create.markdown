@@ -1,6 +1,7 @@
 ---
   category: software
   layout: default
+  permalink: /software/reuse,_contribute,_create
 ---
 ### Use existing code
 
