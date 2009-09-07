@@ -20,3 +20,4 @@ desc "Starts jekyll server on port 4000"
 task :server => [:html,:css] do
   `jekyll --server`
 end
+
