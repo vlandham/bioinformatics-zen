@@ -1,0 +1,3 @@
+Redirect /feed/ http://feeds.feedburner.com/BioinformaticsZen
+Redirect /comments/ http://intensedebate.com/allBlogCommentsRSS/87619
+Redirect /videos/ http://gdata.youtube.com/feeds/base/users/BioinformaticsZen/uploads?alt=rss&amp;v=2&amp;orderby=published
