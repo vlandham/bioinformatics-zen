@@ -17,7 +17,7 @@ The Linux command line has a wide variety of tools ranging from interacting with
 
 ### Text Files
 
-Binary files in specific formats can usualy only be search and editted by the program that created them. Command line tools can manipulate any plain text file. Therefore common data text formats such as CSV, JSON, YAML, and XML can be searched for specific records. Combining the command line with text files makes it relatively simple to perform simultaneous large searches or manipulations across many text based files.
+Binary files in specific formats can usually only be search and edited by the program that created them. Command line tools can manipulate any plain text file. Therefore common data text formats such as CSV, JSON, YAML, and XML can be searched for specific records. Combining the command line with text files makes it relatively simple to perform simultaneous large searches or manipulations across many text based files.
 
 ### Managing spelling in text and images
 
