@@ -18,3 +18,23 @@ The Linux command line has a wide variety of tools ranging from interacting with
 ### Text Files
 
 Binary files in specific formats can usualy only be search and editted by the program that created them. Command line tools can manipulate any plain text file. Therefore common data text formats such as CSV, JSON, YAML, and XML can be searched for specific records. Combining the command line with text files makes it relatively simple to perform simultaneous large searches or manipulations across many text based files.
+
+### Managing spelling in text and images
+
+In this video I'm illustrating how the spelling of the sulfur across text and image files can be maintained consistently using the command line program [sed][sed].
+
+<object width="640" height="385"><param name="movie" value="http://www.youtube.com/v/d0TkCdqekS0&hl=en&fs=1&hd=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/d0TkCdqekS0&hl=en&fs=1&hd=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="640" height="385"></embed></object>
+<p/>
+
+### Manipulating data files on the command line
+
+In this video I'm showing how spread sheet of amino acid atomic content can be converted to [comma separated value (CSV) format][csv]. The amino acid data is then searched using [grep][grep] to find for the entry for cysteine and [AWK][awk] to sort by carbon content. Finally I use [R language][R] to create histograms and x/y plots of the data.
+
+<object width="640" height="385"><param name="movie" value="http://www.youtube.com/v/tUuRBIZVOpY&hl=en&fs=1&hd=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/tUuRBIZVOpY&hl=en&fs=1&hd=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="640" height="385"></embed></object>
+<p/>
+
+[sed]: http://en.wikipedia.org/wiki/Sed
+[csv]: http://en.wikipedia.org/wiki/Comma-separated_values
+[grep]: http://en.wikipedia.org/wiki/Grep
+[awk]: http://en.wikipedia.org/wiki/AWK
+[R]: http://en.wikipedia.org/wiki/R_%28programming_language%29
