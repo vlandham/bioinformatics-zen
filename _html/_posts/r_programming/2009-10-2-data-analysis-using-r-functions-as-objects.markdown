@@ -62,9 +62,9 @@ Here I doing exactly the same thing, but the *do_something* command called in th
     lm(CW ~ CL)
   })
 
-By using curly braces *{ }* I can call multiple functions on the subset of the data. I can do this because the curly braced expression is an argument to the *with* function.
-
 {% endhighlight %}
+
+By using curly braces *{ }* I can call multiple functions on the subset of the data. I can do this because the curly braced expression is an argument to the *with* function.
 
 ### Looping through subsets of data
 
