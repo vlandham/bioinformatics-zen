@@ -9,37 +9,62 @@
 
 @import susy/susy.sass
 
-!dark_grey   = #484848
-!medium_grey = #aaa
+!dark_grey   = #27221f
+!medium_grey = #505050
 !light_grey  = #f1f1f3
 !orange      = #ff7010
 !green       = #10FE70
 
-!font_color         = !dark_grey
-!link_color         = !orange
-!link_hover_color   = !green
-!link_visited_color = !orange
-
 html
   +susy
+  :overflow scroll
 
 body
   +container("justify")
+
+  a, h1, h2, h3, h4, h5, \:visited, pre
+    :font-weight bold
+    :color = !dark_grey
+
   a
     :text-decoration none
-    :color = !orange
+    &:focus, &:hover, &:active
 
-  \:visited
-    :color = !orange
+  h1, h2, h3, h4, h5
+    :margin-top = px2em(50) + "em"
 
-#text, #banner, #title
-  :font-family 'Lucida Grande', Verdana, Arial, Sans-Serif
+  p
+    :margin-bottom = px2em(33) + "em"
+
 
 #text
-  ul.posts
-    +no-bullets
-    span
-      :color = !medium_grey
-      :font-family Monaco, "Courier New", monospace
-  pre
-    :background-color = !light_grey
+
+  #title, #page-title
+    :font-family Helvetica
+    :color = !dark_grey
+
+  #title
+    :font-size   300%
+    :line-height 300%
+    :font-weight bold
+
+  #page-title
+    :font-size   150%
+    :line-height 200%
+
+  #content
+    :font-family 'Lucida Grande', Verdana, Arial, Sans-Serif
+    :color = !medium_grey
+    a
+      :text-decoration underline
+
+    ul.posts
+      +no-bullets
+      span
+        :color = !medium_grey
+        :font-family Monaco, "Courier New", monospace
+    pre
+      :border-left = ".5em solid" !medium_grey
+      :margin-left 1.5em
+      :padding 1.5em
+      :background-color = !light_grey
