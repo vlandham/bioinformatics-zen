@@ -2,3 +2,4 @@ _site/*
 _css/.sass-cache/*
 *.swp
 REVISION
+.rake_tasks
