@@ -1,14 +1,13 @@
-@import blueprint
-@import blueprint/reset.sass
-@import blueprint/modules/colors.sass
-@import blueprint/modules/grid.sass
-@import compass/utilities/lists/bullets.sass
+!grid_unit         = "em"
+!total_cols        = 8
+!col_width         = 4
+!gutter_width      = 1
+!side_gutter_width = !gutter_width
 
-+blueprint-grid
+!base_font_size_px   = 16
+!base_line_height_px = 22
 
-!blueprint_grid_columns = 24
-!blueprint_container_size = 950px
-!blueprint_grid_margin  = 10px
+@import susy/susy.sass
 
 !dark_grey   = #484848
 !medium_grey = #aaa
@@ -22,32 +21,25 @@
 !link_visited_color = !orange
 
 html
-  +blueprint-typography
-  :overflow scroll
-  :font-family 'Lucida Grande', Verdana, Arial, Sans-Serif
+  +susy
 
 body
-  +container
-  :text-align justify
-
+  +container("justify")
   a
     :text-decoration none
+    :color = !orange
 
-  #banner
-    +push(3)
-    +column(14,true)
-    #links
-      +float-right
+  \:visited
+    :color = !orange
 
-  #text
-    +push(3)
-    +column(14,true)
+#text, #banner, #title
+  :font-family 'Lucida Grande', Verdana, Arial, Sans-Serif
 
-    ul.posts
-      +no-bullets
-      span
-        :color = !medium_grey
-        :font-family Monaco, "Courier New", monospace
-
-    pre
-      :background-color = !light_grey
+#text
+  ul.posts
+    +no-bullets
+    span
+      :color = !medium_grey
+      :font-family Monaco, "Courier New", monospace
+  pre
+    :background-color = !light_grey
