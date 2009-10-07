@@ -15,6 +15,14 @@
 !orange      = #ff7010
 !green       = #10FE70
 
+=header_formatting
+  :font-weight bold
+  :color = !dark_grey
+
+=text_formatting
+  :font-family 'Lucida Grande', Verdana, Arial, Sans-Serif
+  :color = !medium_grey
+
 html
   +susy
   :overflow scroll
@@ -23,8 +31,7 @@ body
   +container("justify")
 
   a, h1, h2, h3, h4, h5, \:visited, pre
-    :font-weight bold
-    :color = !dark_grey
+    +header_formatting
 
   a
     :text-decoration none
@@ -36,12 +43,15 @@ body
   p
     :margin-bottom = px2em(33) + "em"
 
+#banner
+  a, \:visited, #links
+    +text_formatting
 
 #text
 
   #title, #page-title
-    :font-family Helvetica
-    :color = !dark_grey
+    +header_formatting
+    :font-family 'Lucida Grande', Verdana, Arial, Sans-Serif
 
   #title
     :font-size   300%
@@ -53,8 +63,7 @@ body
     :line-height 200%
 
   #content
-    :font-family 'Lucida Grande', Verdana, Arial, Sans-Serif
-    :color = !medium_grey
+    +text_formatting
     a
       :text-decoration underline
 
