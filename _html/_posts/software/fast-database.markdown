@@ -1,51 +1,74 @@
-Here I'm going to write some of my experiences working with a bioinformatics project with a large amount of data to process and manage. Maybe some of these tips could be useful for other people doing similar sorts of work. My project involved loading in some biological data, analysing this data, then printing out results for plotting or tabulating. I'll assume that this is in some way relevant to how you may be doing your research. The reason I'm writing this is because working with very large datasets can take a long time to process and then slow down the amount of time taken to get the results that you need. The tips I'm going to give here are ordered from the least technical to more technical. These were the solutions I used, these might not be best but these managed to reduce my process time from a days into hours.
+My research generally involves loading data into a database, shuffling the data, then printing the reordered data for a figure or table. I'll assume that this might be similar to how you do organise your research projects too. I find that using a combination of Ruby and database libraries like [ActiveRecord][ar] makes database backed bioinformatics research easy.
 
-## 0. Use someone else's data
+[ar]: Insert active record link
 
-My very first tip is not really a tip at all, which is why it's numbered 0. Get precomputed data already, don't repeat some analysis if somebody else has already done it. Get the data that somebody else has already generated then skip ahead to the next step in research. The best way to save time in analysis is not to do the analysis at all and get the data from else willing to share it.
+Here I'm going to write about my experience of doing research with gigabytes of data with millions of data points. When working with very big amounts data I found that I manipulate the data in the same as way as a small amount of data because running the analysis just took too long to load. The methods I outlined here are ordered from the less to more technical.
 
-## 1. Use a bigger computer
+## The simple things
 
-This might not sound like a very good solution. For example if you have long tortuous code that is not optimal. This is the easiest to do though. If you're running your code on your desktop computer, try getting hold of a faster computer in the department maybe someone has a bigger tower or there is a department server. More ram and computing power can save a lot of time. The reason to do this is because if the software runs on your computer in should the same on another computer but faster. Use unit testing to make sure though. Deploying and running code on other computers is also very easy with tools like Capistrano. This skips any of the inherent problems of modifying your code to get it to run faster.
+### 1. Use existing data
 
-## 2. Use a faster language interpreter
+Not really a tip, but if you can get the data you need from someone else then you can skip ahead to whatever step is next in your project. This may seem obvious but it's tempting when starting a new research project to sit down and start coding. Nevertheless the best way to save time and effort is to rely on existing data (and code libraries) as much as possible.
 
-I was running my analysis using ruby 1.8.7, and there are many improvements for the ruby interpreter. Such as REE, JRuby and Ruby 1.9. I ended up writing my code on Ruby 1.9 and this improved the execution time significantly and only involved me rewriting a few lines of code to fix a change in the Ruby CSV library. Again this is a quick and easy fix which can save a lot of time.
+### 2. Use a bigger computer
 
-## 3. Add database indices
+Using a faster computer might seem like a lazy option compared with optimising your code. However if the software already works on your computer it should work the same on a bigger, better computer. Unit tests should be used to make sure the code works as expected though. Using a faster computer is probably the only solution which doesn't involved modifying the code or the database and should therefore cannot introduce any bugs.
 
-Assuming that data is being looked in a database, by an index to rows that are being searched this can speed up code execution time. This is relatively easy to implement and can save a large amount of time depending on how much the database is being queried or tables are being joined.
+### 3. Use a faster language interpreter
 
-## 4. Delete data and analysis
+Most of the time using standard ruby interpreter in OSX is fine, but in last two years there have been different but all faster implementations of the Ruby interpreter such as [REE][ree], [JRuby][jruby] and [Ruby 1.9][ruby19]. When I was having problems running my analysis a large amount of data trying my code using Ruby 1.9 improved run time significantly. Unlike using a bigger a server I had to rewrite a few lines of code for [compatibility with the new Ruby CSV library][csv]. This was still relatively easy to implement and does return a noticeable benefit, as above use unit tests to make sure everything still works as expected.
 
-I found that during my research that I computed results that I believed might be useful for future analysis. And the best way to save time is was to delete these analysis and only add them when they become necessary. This removes the time required to compute these analysis, and most likely in future these analyses won't be required. The added benefit of doing this is that also removes complexity from the project. 
+[ree]: ruby enterprise edition
+[jruby]: jruby link
+[ruby19]: ruby 1.9
+[csv]: ruby 1.9 csv link
 
-## 5. Remove database joins
+### 4. Add database indices
 
-It may be the case that two dataset are compared through the database. The question I asked myself was "Do I need both these variables in my database?". Eventually I found that the answer was no. I could drop one variable from the database and instead move the join further up my workflow and cut some database joins from printing my plotting data. R has a very good merge function. Previously I had completely denormalised all the attributes in my database, but instead I dropped one database table and when I was printing my data so I plot it, I was cutting a database join on one 1.5 million row sized table. Which saved a lot of time, I instead joined my second variable in R after I had calculated the mean of the first data and there was less rows to join.
+Making sure database columns are properly indexed decrease speed when searching or joining tables. Database indices are also relatively to implement and the amount of time saved depends on how much the database is being queried or tables are being joined.
 
-## 6. Optimise the code
+## Delete stuff
 
-This should be the last step in a software project because the enemy of good-enough code is perfect code. You often find that when you start optimising code you keep doing this to try and shave a few seconds off the code each time. But software doesn't need to be as fast as possible it just needs to be fast enough to produce the results you need in a reasonable amount of time. So don't spend on this, just try and get large chunks of saving if possible. Importantly benchmarking code should be combined with unit testing code to ensure that the optimising the code doesn't break the code. It's better to produce the right results slowly than the wrong results really quickly.
+If the above three points haven't helped so far generally you have to start digging around in the code - which is bad because bugs can start appearing. The following two points shouldn't cause too much of a problem though because code is just being removed rather than changed.
 
-### 6A. Batch load database queries
+### 5. Delete data and analysis
 
-The first and easiest one is to batch load database queries. This means if you're integrating a series of records in a database, don't pull all the records into memory at the same time. Instead using primary key or database curses, and pull a set of records into memory each time. When pulling all the database records into memory you might find that most of the process time spent loading the database records, rather than actually processing them. A example using ruby is find_in_batches which makes it very easy to perform this analysis. 
+I found that during my research I often calculate results which I though might be useful for at some point in the future. As you might expect just to delete these analysis you remove the time required to compute them. Most likely in future they won't even be required anyway. The added benefit of benefit of deleting code is that is removes bugs along with it. 
 
-### 6B. Association loading
+### 6. Remove table joins in the database
 
-It might be the case that records in one table are associated with records in a foreign table. Association loading means that when you pull the rows out in Table A a single lookup is required to pull all the associated rows out in Table B at the same time. This can save a time because it means that there are less calls being made to the database.
+Usually I'm using a database because I two or more sets of data, and I want to shuffle in a format that makes them comparable. I then compared the my variables my joining them in the database and printing a text file with the result.
 
-### 6C. Order of loops
+With a large number of database records I found that a simple join between two tables could take a long time, and if my data was denormalised the time would increase accordingly. By experimenting I found that I could drop one of my variables from my database and instead join the second variable further along my workflow when there were less records. Instead of joining two large tables in my database, I instead joined my second variable using the [merge function in R][merge] when I was plotting the data and there were less rows required to make the join on.
 
-I found that this was a very big time sink in my project where I had loops within loops that were querying the database. By moving the database calls further outside the loop order, or out of the loops completely and cache them before the loops I can save time through calling the database less. It's also faster to look cached variables up in memory than querying them from the database.
+[merge]: Insert r link
 
-### 6D. Use raw SQL to manipulate the database
+## Code optimisation
 
-During my project I was using ActiveRecord as the ORM to access my database. However by skipping the ORM and using raw SQL this was able to save a lot of time for me. This is especially the case for inserting millions of rows into the database. I got the idea for this from Ilya Grigriks blog.
+I think this should be the last step in a software project. The reason is because the enemy of good-enough code is perfect code, you often find that when you start optimising code you keep going more than is necessary. Software doesn't need to be as fast as possible just needs to be fast enough to get the job done. A second point is that optimising code, means changing code, which can then introduce bugs. Therefore code optimisation should be combined with thorough unit testing to ensure nothing gets broken. It's better to produce the right results slowly than the wrong results quickly.
 
-## 7. Use mature solutions
+### 7A. Batch load database query results
 
-This is not really a tip but useful. A lot of Ruby blogs talk about document based schema-less databases like couch db and mongo mapper. I'm sure at some point in the future these may replace relational databases. But new libraries can be very immature and ready to slot into a project. I found that I when I tried this I spent a significant amount of time maintaining these libraries rather then moving onto the analysis I needed to produce. In the end I switched back to vanilla active record because I was spending time getting these new libraries to work how I was used to active record working instead of producing the results I needed with good-enough libraries.
+An easy way to improve database code is to batch load database queries. If you're doing some analysis to the entries in a database table don't pull all the records into memory at the same time. Pulling all the database records into memory (usually unintentionally) usually means that most of the process is time spent loading data into memory rather than actually processing it. Instead using a primary key or database curses to pull subsets of records into memory at a time. Each subset is processed then the next set pulled out. A example of this in Ruby is the ActiveRecord method find_in_batches which does exactly this. 
 
-Another example is when I tried using map reduce. A map reduce approach to data analysis receives a lot of attention on blogs of how computation can be done. I'm not arguing this but I found that map reduce is not yet at the stage where it can but not at the stage where it is plugin and play. But again I had to spend time maintaining my software to run with the map reduce libraries, and some existing libraries weren't already compatible with ActiveRecord. Ultimately at the end of the day I'm just a one man show with a limited time to produce results. Programs like Hadoop are likely to be the future and university systems will be designed around this, but there's also a lot to be said for a big server, the latest language interpreter, and a well indexed database.
+### 7B. Association loading
+
+Association loading means that when you pull a row of Table A that all the associated rows in Table B are retrieved at the same time. This will usually mean that the database is only queried twice. The alternative slower solution is to use a loop to pull each foreign table row out when it's required which translates to as many database queries as there are corresponding rows.
+
+### 7C. Variable loading in loops
+
+I found when working with a large database that object creation or database querying in loops can suck up a lot of processor time. I improved things by moving the database calls, up or out of the loops as much as possible. Instead I cached the rows I need from the database in memory before I needed them. Therefore the code was looking things up memory rather then querying the database, which for large loops made a big difference. 
+
+### 7D. Use raw SQL
+
+Object relation management (ORM) libraries like ActiveRecord allow the database to be seamlessly manipulated using object orientated programming. Using an ORM does however add a time penalty because it's an extra layer between your code and the database. In instances where you are performing millions of database insertions or updates using raw SQL and skipping the ORM can save time. This is neatly outlined in [a post on Ilya Grigorik's blog][ilya].
+
+[ilya]: cite ilya - check his name too
+
+## Stick to mature software
+
+Blog often buzz about the latest and the latest software such as schema-less databases like [couchDB][couch] and [mongoDB][mongo], or map-reduce approaches like [Hadoop][hadoop]. I'm sure in the future these technologies will become stand practice. I'm not arguing this but I found that map reduce is not yet at the stage where it can but not at the stage where it is plugin and play. However when working with these I found that I spent a significant amount of time maintaining the code to work with these software rather then moving onto the analysis I needed to produce. In the end I switched back to the solutions I was used to using because I was spending time getting cutting edge software to work instead of producing the results I needed with good-enough software. Ultimately I'm just one man with a limited time to produce results. Schemaless database and map-reduce algorithms are likely to be the future, but there's also a lot to be said in the mean time for a big server, the latest language interpreter, and a database with the right indices.
+
+[couch]: insert couch db link
+[mongo]: insert mongo db link
+[hadoop]: insert hadoop
