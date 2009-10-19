@@ -44,19 +44,19 @@ For example I had two sets of data, the first contained millions of entries wher
 
 When I was encountering performance problems I left optimising code as a last resort. There were three reasons for this, the first is that [premature optimisation is the root of all evil][premature]. The second reason reason is that the enemy of good-enough code is perfect code - when I start optimising code I tend keep going more than is necessary. Code doesn't need to be as fast as possible though, just fast enough to get the desired results. The third point is that optimising code, means changing code, which introduces bugs and so the more the code is optimised the more chance of bugs. Unfortunately code optimisation for performance is usually a necessity, but remembering it's ultimately better to produce the right results slowly than the wrong results quickly.
 
-### 7A. Batch load database query results
+### 7a. Batch load database query results
 
 One easy way I reducing running times was by batch loading the database rows into memory rather than trying to process a very large table or query at one. Pulling all the database records into memory means that most the time is spent loading the data into memory rather than actually dealing with it. By instead pulling subsets of records into memory at a time, each subset is processed before the next set or rows is retrieved meaning less memory used up. A example of this in Ruby is [the ActiveRecord method find_in_batches][batches]. 
 
-### 7B. Association loading
+### 7b. Association loading
 
 Association loading means that when a row of Table A is retrieved from the database that all the rows associated with it in Table B are also retrieved at the same time. This will usually mean that the database is only queried twice, once to find the records from Table A and once to find the records from Table B. The alternative option is to use a loop to retrieve each row from Table B when it's required but this will mean as many database queries as there are rows, and more queries means more running time.
 
-### 7C. Database querying in loops
+### 7c. Database querying in loops
 
 I found that large loops which query the database were often the majority of my software's running time. I improves this by instead moving the database calls, up or out of the loops as much as possible and caching rows in memory before I needed them where ever possible. This meant the looping code was looking things up in memory rather then querying the database each time. A similar approach aim at avoiding object creation in loops also seemed improve performance. Combining this approach with the one below was what saved the most amount of time for my project.
 
-### 7D. Use raw SQL
+### 7d. Use raw SQL
 
 Object relational management (ORM) libraries like ActiveRecord allow the database to be manipulated using object orientated programming which makes using a database easier. Using an ORM does however add a performance penalty because it is an extra layer of code on top of the database. When I was doing millions of database updates I found that skipping using the ORM and directly using raw SQL contributed to a large saving of processing time. The advantages of this technique are neatly outlined [by Ilya Grigorik][ilya].
 
