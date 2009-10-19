@@ -1,3 +1,7 @@
+---
+  category: software
+  layout: default
+---
 Bioinformatics usually a involves shuffling data into the right format for plotting or statistical tests. I prefer to [use a database to store and format data][database] as I think this make projects easier to maintain compared with using lots of different scripts. I find a dynamic language like Ruby and the corresponding libraries for database manipulation like [ActiveRecord][ar] makes using a database in research relatively simple.
 
 Using a database however stops being simple when you have to deal with very large amounts of data. Here I'm going to write about my experience of analysing gigabytes of data with millions of data points. The ideas I'm outlining here may not be the best way to approach dealing with large data sets I have use them all. I've the list from what I think is the least to most technical, or in other words the most pragmatic approaches are first.
